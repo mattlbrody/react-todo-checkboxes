@@ -1,11 +1,17 @@
+import './Todos.css';
 import React from 'react';
 
-const Todos = ({todos, deleteToDo}) => {
+const Todos = ({todos, scratchToDo}) => {
   const todoList = todos.length ? (
     todos.map(todo => {
       return (
         <div className="collection-item" key={todo.id}>
-          <span onClick={() => {deleteToDo(todo.id)}}>{todo.content}</span>
+          <input 
+            type="checkbox" 
+            checked={todo.checked}
+            onChange={() => {scratchToDo(todo)}}
+          />
+          <span className={todo.checked} >{todo.content}</span>
         </div>
       )
     })
