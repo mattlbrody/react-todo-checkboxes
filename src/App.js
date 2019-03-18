@@ -4,13 +4,13 @@ import AddToDo from './AddToDo';
 
 class App extends Component {
   state = {
-    todos: [
-      {id: 1, content: 'buy some milk', checked: ''},
-      {id: 2, content: 'play mario kart', checked: 'checked'}
-    ]
+    todos: []
   }
 
+  // change the checked state in a particular item
   scratchToDo = (todo) => {
+    // if the item is not currently checked, set the state to checked
+    // which changes the class and scatches out the li's text
     if(todo.checked === '') {
       todo.checked = 'checked'
       let todos = [...this.state.todos]
@@ -18,6 +18,8 @@ class App extends Component {
         todos
       })
     } else {
+      // if the item is already checked, then remove the checked
+      // in state which removes the class and unscratches the li
       todo.checked = ''
       let todos = [...this.state.todos]
       this.setState({
@@ -26,6 +28,7 @@ class App extends Component {
     }
   }
 
+  // add a new todo item by including it in the state
   addToDo = (todo) => {
     todo.id = Math.random();
     todo.checked = '';
@@ -34,17 +37,16 @@ class App extends Component {
       todos
     })
   }
-  
+
   render() {
     return (
-      <div className="todo-app container">
-        <h1 className="center blue-text">To Do List</h1>
+      <div className="container">
+        <h1 className="">To Do List</h1>
+        <AddToDo addToDo={this.addToDo}/>
         <Todos 
           todos={this.state.todos}
           scratchToDo={this.scratchToDo}
         />
-        <AddToDo addToDo={this.addToDo}/>
-        
       </div>
     );
   }

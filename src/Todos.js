@@ -2,26 +2,31 @@ import './Todos.css';
 import React from 'react';
 
 const Todos = ({todos, scratchToDo}) => {
+
+  // check if the list is empty, if has items then display those items
   const todoList = todos.length ? (
     todos.map(todo => {
       return (
-        <div className="collection-item" key={todo.id}>
+        <li className="item" key={todo.id}>
           <input 
             type="checkbox" 
             checked={todo.checked}
             onChange={() => {scratchToDo(todo)}}
           />
           <span className={todo.checked} >{todo.content}</span>
-        </div>
+        </li>
       )
     })
     ) : (
-    <p className="center">You have no todos left</p>
+    // if the list of items is empty display this message
+    <p className="">Add a to do!</p>
     )
 
   return (
-    <div className="todos collection">
-      {todoList}
+    <div className="">
+      <ul>
+        {todoList}
+      </ul>
     </div>
   );
 }
